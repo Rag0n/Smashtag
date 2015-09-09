@@ -16,6 +16,13 @@ class TweetTableViewCell: UITableViewCell
         }
     }
     
+    struct Constants {
+        static let userNameColor = UIColor.greenColor()
+        static let hashtagColor = UIColor.orangeColor()
+        static let urlColor = UIColor.blueColor()
+    }
+    
+    
     @IBOutlet weak var tweetProfileImageView: UIImageView!
     @IBOutlet weak var tweetScreenNameLabel: UILabel!
     @IBOutlet weak var tweetTextLabel: UILabel!
@@ -36,7 +43,16 @@ class TweetTableViewCell: UITableViewCell
                 for _ in tweet.media {
                     tweetTextLabel.text! += " 📷"
                 }
+                
+                var attributedString = NSMutableAttributedString(string: tweetTextLabel!.text!)
+                configureAttributedString(attributedString, withKeywords: tweet.hashtags, color: Constants.hashtagColor)
+                configureAttributedString(attributedString, withKeywords: tweet.userMentions, color: Constants.userNameColor)
+                configureAttributedString(attributedString, withKeywords: tweet.urls, color: Constants.urlColor)
+
+                tweetTextLabel.attributedText = attributedString
             }
+
+            
             
             tweetScreenNameLabel?.text = "\(tweet.user)" // tweet.user.description
             
@@ -55,5 +71,11 @@ class TweetTableViewCell: UITableViewCell
             tweetCreatedLabel?.text = formatter.stringFromDate(tweet.created)
         }
 
+    }
+    
+    private func configureAttributedString(attributedString: NSMutableAttributedString, withKeywords: [Tweet.IndexedKeyword], color: UIColor) {
+        for keyword in withKeywords {
+            attributedString.addAttribute(NSForegroundColorAttributeName, value: color, range: keyword.nsrange)
+        }
     }
 }
