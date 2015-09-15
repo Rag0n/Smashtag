@@ -158,7 +158,6 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
 
 
     // MARK: - Navigation
-
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "Show mentions" {
@@ -166,6 +165,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
                 if let selectedCell = sender as? TweetTableViewCell {
                     let selectedIndex = self.tableView.indexPathForCell(selectedCell)
                     mtvc.tweet = tweets[selectedIndex!.section][selectedIndex!.row]
+                    mtvc.navigationItem.title = "\(mtvc.tweet!.user)"
                 }
             }
         }

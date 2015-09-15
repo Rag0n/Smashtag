@@ -79,11 +79,6 @@ class MentionsTableViewController: UITableViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     // MARK: - Table view data source
@@ -102,14 +97,13 @@ class MentionsTableViewController: UITableViewController {
             case .textMention(let mentionName):
                 let cell = tableView.dequeueReusableCellWithIdentifier(Constants.textMentionCellReuseIdentifier, forIndexPath: indexPath) as! UITableViewCell
                 cell.textLabel?.text = mentionName
-            case .imageMention(let _, let _):
+                return cell
+            case .imageMention(let imageURL, let aspectRatio):
                 let cell = tableView.dequeueReusableCellWithIdentifier(Constants.imageMentionCellReuseIdentifier, forIndexPath: indexPath) as! MentionImageTableViewCell
-//                cell.mentionImage.image = image
+                cell.imageURL = imageURL
+                return cell
         }
-        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.textMentionCellReuseIdentifier, forIndexPath: indexPath) as! UITableViewCell
-        
-        cell.textLabel?.text = mention.get()
-        return cell
+
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
