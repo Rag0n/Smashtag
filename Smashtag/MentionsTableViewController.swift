@@ -13,23 +13,22 @@ class MentionsTableViewController: UITableViewController {
     // MARK: - Public API
     var tweet: Tweet? {
         didSet {
-            if tweet?.hashtags.count > 0 {
-                let hashtags = tweet!.hashtags.map { $0.keyword }
-                var mentionValues = [MentionValue]()
-                
-                for hashtag in hashtags {
-                    mentionValues.append(MentionValue.textMention(hashtag))
-                }
-                var hashtagsMention = Mention(name: Constants.hashtagsName, value: mentionValues)
-            }
+            updateUI()
         }
     }
     
-    struct Constants {
-        static let hashtagsName = "hashtags"
-        static let urlsName = "urls"
-        static let usersName = "users"
-        static let imagesName = "images"
+    func updateUI() {
+        if tweet?.hashtags.count > 0 {
+            let hashtags = tweet!.hashtags.map { $0.keyword }
+            var mentionValues = [MentionValue]()
+            
+            for hashtag in hashtags {
+                mentionValues.append(MentionValue.textMention(hashtag))
+            }
+            var hashtagsMention = Mention(name: Constants.hashtagsName, value: mentionValues)
+            mentions.append(hashtagsMention)
+        }
+
     }
     
     // MARK: - Private Structure
@@ -43,12 +42,26 @@ class MentionsTableViewController: UITableViewController {
     private enum MentionValue {
         case textMention(String)
         case imageMention(UIImage)
+        
+        func get() -> String {
+            switch self {
+            case .textMention(let name): return name
+            case .imageMention(let imageName): return "\(imageName)"
+            }
+        }
+    }
+    
+    private struct Constants {
+        static let hashtagsName = "hashtags"
+        static let urlsName = "urls"
+        static let usersName = "users"
+        static let imagesName = "images"
     }
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        updateUI()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -59,15 +72,18 @@ class MentionsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
-        return 0
+        return mentions.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
-        return 0
+        return mentions[section].value.count
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell = UITableViewCell()
+        let mention = mentions[indexPath.section].value[indexPath.row]
+        cell.textLabel?.text = mention.get()
+        return cell
     }
 
 
