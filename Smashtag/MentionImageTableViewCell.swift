@@ -9,7 +9,5 @@
 import UIKit
 
 class MentionImageTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var mentionImageView: UIView!
-
+    @IBOutlet weak var mentionImage: UIImageView!
 }

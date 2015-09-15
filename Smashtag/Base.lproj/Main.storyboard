@@ -127,6 +127,11 @@
                                     <subviews>
                                         <view contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Mjy-Nd-LEk">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="199"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kxk-CZ-qfU">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="199"/>
+                                                </imageView>
+                                            </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
                                     </subviews>
@@ -138,7 +143,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="mentionImageView" destination="Mjy-Nd-LEk" id="nVL-j7-HXW"/>
+                                    <outlet property="mentionImage" destination="kxk-CZ-qfU" id="qsc-vm-OaN"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

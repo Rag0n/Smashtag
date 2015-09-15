@@ -24,20 +24,14 @@ class MentionsTableViewController: UITableViewController {
         addTextMention(tweet!.urls, mentionName: Constants.urlsName)
         addTextMention(tweet!.userMentions, mentionName: Constants.usersName)
 
-    }
-    
-    private func addTextMention(indexedKeywords: [Tweet.IndexedKeyword], mentionName: String) {
-        let keywordsArray = indexedKeywords.map { $0.keyword } // array of keywords(hashtags, urls, users)
-        var mentionValues = [MentionValue]()
-        
-        for mention in keywordsArray {
-            mentionValues.append(MentionValue.textMention(mention))
+        if tweet?.media.count > 0 {
+            let imageMentionValues = tweet?.media.map { MentionValue.imageMention($0.url, $0.aspectRatio) }
+            let newMention = Mention(name: Constants.imagesName, value: imageMentionValues!)
+            self.mentions.append(newMention)
         }
-        
-        let newMention = Mention(name: mentionName, value: mentionValues)
-        self.mentions.append(newMention)
     }
     
+
     // MARK: - Private API
     private var mentions = [Mention]()
     
@@ -48,7 +42,7 @@ class MentionsTableViewController: UITableViewController {
     
     private enum MentionValue {
         case textMention(String)
-        case imageMention(UIImage)
+        case imageMention(NSURL, Double)
         
         func get() -> String {
             switch self {
@@ -63,6 +57,23 @@ class MentionsTableViewController: UITableViewController {
         static let urlsName = "urls"
         static let usersName = "users"
         static let imagesName = "images"
+        static let textMentionCellReuseIdentifier = "Mentions"
+        static let imageMentionCellReuseIdentifier = "Mention image"
+    }
+    
+    private func addTextMention(indexedKeywords: [Tweet.IndexedKeyword], mentionName: String) {
+        if indexedKeywords.count <= 0 {
+            return
+        }
+        let keywordsArray = indexedKeywords.map { $0.keyword } // array of keywords(hashtags, urls, users)
+        var mentionValues = [MentionValue]()
+        
+        for mention in keywordsArray {
+            mentionValues.append(MentionValue.textMention(mention))
+        }
+        
+        let newMention = Mention(name: mentionName, value: mentionValues)
+        self.mentions.append(newMention)
     }
     
     // MARK: - View Life Cycle
@@ -86,8 +97,17 @@ class MentionsTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = UITableViewCell()
         let mention = mentions[indexPath.section].value[indexPath.row]
+        switch mention {
+            case .textMention(let mentionName):
+                let cell = tableView.dequeueReusableCellWithIdentifier(Constants.textMentionCellReuseIdentifier, forIndexPath: indexPath) as! UITableViewCell
+                cell.textLabel?.text = mentionName
+            case .imageMention(let _, let _):
+                let cell = tableView.dequeueReusableCellWithIdentifier(Constants.imageMentionCellReuseIdentifier, forIndexPath: indexPath) as! MentionImageTableViewCell
+//                cell.mentionImage.image = image
+        }
+        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.textMentionCellReuseIdentifier, forIndexPath: indexPath) as! UITableViewCell
+        
         cell.textLabel?.text = mention.get()
         return cell
     }
