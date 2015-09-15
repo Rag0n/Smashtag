@@ -13,25 +13,32 @@ class MentionsTableViewController: UITableViewController {
     // MARK: - Public API
     var tweet: Tweet? {
         didSet {
+//            mentions.removeAll()
             updateUI()
         }
     }
     
     func updateUI() {
-        if tweet?.hashtags.count > 0 {
-            let hashtags = tweet!.hashtags.map { $0.keyword }
-            var mentionValues = [MentionValue]()
-            
-            for hashtag in hashtags {
-                mentionValues.append(MentionValue.textMention(hashtag))
-            }
-            var hashtagsMention = Mention(name: Constants.hashtagsName, value: mentionValues)
-            mentions.append(hashtagsMention)
-        }
+        
+        addTextMention(tweet!.hashtags, mentionName: Constants.hashtagsName)
+        addTextMention(tweet!.urls, mentionName: Constants.urlsName)
+        addTextMention(tweet!.userMentions, mentionName: Constants.usersName)
 
     }
     
-    // MARK: - Private Structure
+    private func addTextMention(indexedKeywords: [Tweet.IndexedKeyword], mentionName: String) {
+        let keywordsArray = indexedKeywords.map { $0.keyword } // array of keywords(hashtags, urls, users)
+        var mentionValues = [MentionValue]()
+        
+        for mention in keywordsArray {
+            mentionValues.append(MentionValue.textMention(mention))
+        }
+        
+        let newMention = Mention(name: mentionName, value: mentionValues)
+        self.mentions.append(newMention)
+    }
+    
+    // MARK: - Private API
     private var mentions = [Mention]()
     
     private struct Mention {
@@ -61,7 +68,6 @@ class MentionsTableViewController: UITableViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateUI()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -84,6 +90,10 @@ class MentionsTableViewController: UITableViewController {
         let mention = mentions[indexPath.section].value[indexPath.row]
         cell.textLabel?.text = mention.get()
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+       return mentions[section].name
     }
 
 
