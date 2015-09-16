@@ -9,7 +9,11 @@
 import UIKit
 
 class MentionImageTableViewCell: UITableViewCell {
-    @IBOutlet weak var mentionImage: UIImageView!
+    @IBOutlet weak var mentionImage: UIImageView! {
+        didSet {
+            self.mentionImage.contentMode = UIViewContentMode.ScaleAspectFit
+        }
+    }
     
     //MARK: - Public API
     var imageURL: NSURL? {
