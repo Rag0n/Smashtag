@@ -20,15 +20,15 @@ class MentionsTableViewController: UITableViewController {
     
     func updateUI() {
         
-        addTextMention(tweet!.hashtags, mentionName: Constants.hashtagsName)
-        addTextMention(tweet!.urls, mentionName: Constants.urlsName)
-        addTextMention(tweet!.userMentions, mentionName: Constants.usersName)
-
         if tweet?.media.count > 0 {
             let imageMentionValues = tweet?.media.map { MentionValue.imageMention($0.url, $0.aspectRatio) }
             let newMention = Mention(name: Constants.imagesName, value: imageMentionValues!)
             self.mentions.append(newMention)
         }
+        
+        addTextMention(tweet!.hashtags, mentionName: Constants.hashtagsName)
+        addTextMention(tweet!.urls, mentionName: Constants.urlsName)
+        addTextMention(tweet!.userMentions, mentionName: Constants.usersName)
     }
     
 
@@ -79,6 +79,8 @@ class MentionsTableViewController: UITableViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.estimatedRowHeight = tableView.rowHeight
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
 
     // MARK: - Table view data source
@@ -105,6 +107,17 @@ class MentionsTableViewController: UITableViewController {
         }
 
     }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        let mention = mentions[indexPath.section].value[indexPath.row]
+        switch mention {
+        case .textMention(let mentionName):
+            return UITableViewAutomaticDimension
+        case .imageMention(let imageURL, let aspectRatio):
+            return 200.0
+        }
+    }
+    
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
        return mentions[section].name

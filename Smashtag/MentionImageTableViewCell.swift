@@ -9,9 +9,9 @@
 import UIKit
 
 class MentionImageTableViewCell: UITableViewCell {
-    @IBOutlet weak var mentionImage: UIImageView! {
+    @IBOutlet weak var mentionImage: UIImageView!{
         didSet {
-            self.mentionImage.contentMode = UIViewContentMode.ScaleAspectFit
+            self.mentionImage.contentMode = UIViewContentMode.ScaleAspectFill
         }
     }
     
@@ -31,6 +31,7 @@ class MentionImageTableViewCell: UITableViewCell {
                 dispatch_async(dispatch_get_main_queue()) {
                     if url == self.imageURL {
                         if imageData != nil {
+//                            self.mentionImage.contentMode = UIViewContentMode.ScaleAspectFit
                             self.mentionImage.image = UIImage(data: imageData!)
                         } else {
                             self.mentionImage = nil

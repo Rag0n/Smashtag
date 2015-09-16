@@ -119,31 +119,25 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleAspectFit" selectionStyle="default" indentationWidth="10" reuseIdentifier="Mention image" rowHeight="200" id="Mnd-GJ-pdG" customClass="MentionImageTableViewCell" customModule="Smashtag" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Mention image" rowHeight="201" id="Dsb-Ix-Xo6" customClass="MentionImageTableViewCell" customModule="Smashtag" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mnd-GJ-pdG" id="H9X-kU-nUU">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dsb-Ix-Xo6" id="LZo-Mg-HC7">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Mjy-Nd-LEk">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="199"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kxk-CZ-qfU">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="199"/>
-                                                </imageView>
-                                            </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </view>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bCa-Wn-wva">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="Mjy-Nd-LEk" secondAttribute="trailing" id="AJM-Lo-X7U"/>
-                                        <constraint firstAttribute="bottom" secondItem="Mjy-Nd-LEk" secondAttribute="bottom" id="Qvy-cD-kkF"/>
-                                        <constraint firstItem="Mjy-Nd-LEk" firstAttribute="leading" secondItem="H9X-kU-nUU" secondAttribute="leading" id="T9v-eg-3JR"/>
-                                        <constraint firstItem="Mjy-Nd-LEk" firstAttribute="top" secondItem="H9X-kU-nUU" secondAttribute="top" id="nXg-Nl-c07"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="bCa-Wn-wva" secondAttribute="trailing" constant="-8" id="JbC-JF-sYo"/>
+                                        <constraint firstItem="bCa-Wn-wva" firstAttribute="leading" secondItem="LZo-Mg-HC7" secondAttribute="leadingMargin" constant="-8" id="YLs-Zi-FNP"/>
+                                        <constraint firstItem="bCa-Wn-wva" firstAttribute="top" secondItem="LZo-Mg-HC7" secondAttribute="topMargin" constant="-8" id="Zno-rX-LIB"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="bCa-Wn-wva" secondAttribute="bottom" constant="-8" id="xa5-8N-wGL"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="mentionImage" destination="kxk-CZ-qfU" id="qsc-vm-OaN"/>
+                                    <outlet property="mentionImage" destination="bCa-Wn-wva" id="UZG-h0-y2r"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
