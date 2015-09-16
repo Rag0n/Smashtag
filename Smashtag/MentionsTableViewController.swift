@@ -26,9 +26,10 @@ class MentionsTableViewController: UITableViewController {
             self.mentions.append(newMention)
         }
         
-        addTextMention(tweet!.hashtags, mentionName: Constants.hashtagsName)
-        addTextMention(tweet!.urls, mentionName: Constants.urlsName)
         addTextMention(tweet!.userMentions, mentionName: Constants.usersName)
+        addTextMention(tweet!.urls, mentionName: Constants.urlsName)
+        addTextMention(tweet!.hashtags, mentionName: Constants.hashtagsName)
+
     }
     
 
@@ -79,8 +80,8 @@ class MentionsTableViewController: UITableViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.estimatedRowHeight = tableView.rowHeight
-        tableView.rowHeight = UITableViewAutomaticDimension
+//        tableView.estimatedRowHeight = tableView.rowHeight
+//        tableView.rowHeight = UITableViewAutomaticDimension
     }
 
     // MARK: - Table view data source
@@ -114,8 +115,13 @@ class MentionsTableViewController: UITableViewController {
         case .textMention(let mentionName):
             return UITableViewAutomaticDimension
         case .imageMention(let imageURL, let aspectRatio):
-            return 200.0
+            var test = tableView.bounds.size.width / CGFloat(aspectRatio)
+            return tableView.frame.size.width / CGFloat(aspectRatio)
         }
+    }
+    
+    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 200.0
     }
     
     
