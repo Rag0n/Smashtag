@@ -13,7 +13,6 @@ class MentionsTableViewController: UITableViewController {
     // MARK: - Public API
     var tweet: Tweet? {
         didSet {
-//            mentions.removeAll()
             updateUI()
         }
     }
@@ -98,10 +97,10 @@ class MentionsTableViewController: UITableViewController {
         let mention = mentions[indexPath.section].value[indexPath.row]
         switch mention {
             case .textMention(let mentionName):
-                let cell = tableView.dequeueReusableCellWithIdentifier(Constants.textMentionCellReuseIdentifier, forIndexPath: indexPath) as! UITableViewCell
+                let cell = tableView.dequeueReusableCellWithIdentifier(Constants.textMentionCellReuseIdentifier, forIndexPath: indexPath) 
                 cell.textLabel?.text = mentionName
                 return cell
-            case .imageMention(let imageURL, let aspectRatio):
+            case .imageMention(let imageURL, let _):
                 let cell = tableView.dequeueReusableCellWithIdentifier(Constants.imageMentionCellReuseIdentifier, forIndexPath: indexPath) as! MentionImageTableViewCell
                 cell.imageURL = imageURL
                 return cell
@@ -112,10 +111,9 @@ class MentionsTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let mention = mentions[indexPath.section].value[indexPath.row]
         switch mention {
-        case .textMention(let mentionName):
+        case .textMention(let _):
             return UITableViewAutomaticDimension
-        case .imageMention(let imageURL, let aspectRatio):
-            var test = tableView.bounds.size.width / CGFloat(aspectRatio)
+        case .imageMention(let _, let aspectRatio):
             return tableView.frame.size.width / CGFloat(aspectRatio)
         }
     }

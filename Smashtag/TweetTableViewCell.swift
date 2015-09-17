@@ -44,7 +44,7 @@ class TweetTableViewCell: UITableViewCell
                     tweetTextLabel.text! += " 📷"
                 }
                 
-                var attributedString = NSMutableAttributedString(string: tweetTextLabel!.text!)
+                let attributedString = NSMutableAttributedString(string: tweetTextLabel!.text!)
                 configureAttributedString(attributedString, withKeywords: tweet.hashtags, color: Constants.hashtagColor)
                 configureAttributedString(attributedString, withKeywords: tweet.userMentions, color: Constants.userNameColor)
                 configureAttributedString(attributedString, withKeywords: tweet.urls, color: Constants.urlColor)

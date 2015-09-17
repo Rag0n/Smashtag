@@ -25,7 +25,7 @@ class MentionImageTableViewCell: UITableViewCell {
     //MARK: - Private API
     private func fetchImage() {
         if let url = imageURL {
-            let qos = Int(QOS_CLASS_USER_INITIATED.value)
+            let qos = Int(QOS_CLASS_USER_INITIATED.rawValue)
             dispatch_async(dispatch_get_global_queue(qos, 0)) { () -> Void in
                 let imageData = NSData(contentsOfURL: url)
                 dispatch_async(dispatch_get_main_queue()) {
