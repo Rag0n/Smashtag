@@ -128,13 +128,29 @@ class MentionsTableViewController: UITableViewController {
        return mentions[section].name
     }
 
+    //MARK: - Navigation
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        if identifier == Constants.SearchMentionSegueIdentifier {
+            if let cell = sender as? UITableViewCell {
+                let senderText = cell.textLabel?.text
+                if senderText?.hasPrefix("http://") == true {
+                    if let url = NSURL(string: senderText!) {
+                        UIApplication.sharedApplication().openURL(url)
+                        return false
+                    }
+                }
+            }
+        }
+        return true
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == Constants.SearchMentionSegueIdentifier {
             if let ttvc = segue.destinationViewController as? TweetTableViewController {
                 if let selectedCell = sender as? UITableViewCell {
                     let searchText = selectedCell.textLabel?.text
                     ttvc.searchText = searchText
-                    
                 }
             }
         }
