@@ -147,14 +147,23 @@ class MentionsTableViewController: UITableViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == Constants.SearchMentionSegueIdentifier {
-            if let ttvc = segue.destinationViewController as? TweetTableViewController {
-                if let selectedCell = sender as? UITableViewCell {
-                    let searchText = selectedCell.textLabel?.text
-                    ttvc.searchText = searchText
+        if let identifier = segue.identifier {
+            switch identifier {
+            case Constants.SearchMentionSegueIdentifier:
+                if let ttvc = segue.destinationViewController as? TweetTableViewController {
+                    if let selectedCell = sender as? UITableViewCell {
+                        let searchText = selectedCell.textLabel?.text
+                        ttvc.searchText = searchText
+                    }
                 }
+            case Constants.ShowImageSegueIdentifier:
+                if let ivc = segue.destinationViewController as? ImageViewController {
+                    if let selectedImage = sender as? MentionImageTableViewCell {
+                        ivc.image = selectedImage.mentionImage.image
+                    }
+                }
+            default: break
             }
         }
     }
-
 }

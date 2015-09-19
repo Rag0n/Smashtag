@@ -290,6 +290,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="scrollView" destination="gEb-J2-dXq" id="wdq-QK-1Ni"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m06-o6-uE3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
