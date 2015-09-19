@@ -59,6 +59,7 @@ class MentionsTableViewController: UITableViewController {
         static let imagesName = "images"
         static let textMentionCellReuseIdentifier = "Mentions"
         static let imageMentionCellReuseIdentifier = "Mention image"
+        static let SearchMentionSegueIdentifier = "Search mention"
     }
     
     private func addTextMention(indexedKeywords: [Tweet.IndexedKeyword], mentionName: String) {
@@ -100,7 +101,7 @@ class MentionsTableViewController: UITableViewController {
                 let cell = tableView.dequeueReusableCellWithIdentifier(Constants.textMentionCellReuseIdentifier, forIndexPath: indexPath) 
                 cell.textLabel?.text = mentionName
                 return cell
-            case .imageMention(let imageURL, let _):
+            case .imageMention(let imageURL, _):
                 let cell = tableView.dequeueReusableCellWithIdentifier(Constants.imageMentionCellReuseIdentifier, forIndexPath: indexPath) as! MentionImageTableViewCell
                 cell.imageURL = imageURL
                 return cell
@@ -111,9 +112,9 @@ class MentionsTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let mention = mentions[indexPath.section].value[indexPath.row]
         switch mention {
-        case .textMention(let _):
+        case .textMention(_):
             return UITableViewAutomaticDimension
-        case .imageMention(let _, let aspectRatio):
+        case .imageMention(_, let aspectRatio):
             return tableView.frame.size.width / CGFloat(aspectRatio)
         }
     }
@@ -127,6 +128,16 @@ class MentionsTableViewController: UITableViewController {
        return mentions[section].name
     }
 
-
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == Constants.SearchMentionSegueIdentifier {
+            if let ttvc = segue.destinationViewController as? TweetTableViewController {
+                if let selectedCell = sender as? UITableViewCell {
+                    let searchText = selectedCell.textLabel?.text
+                    ttvc.searchText = searchText
+                    
+                }
+            }
+        }
+    }
 
 }
