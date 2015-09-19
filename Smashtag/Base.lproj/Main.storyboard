@@ -55,6 +55,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="mentionImage" destination="bCa-Wn-wva" id="UZG-h0-y2r"/>
+                                    <segue destination="zcJ-K7-iRT" kind="show" identifier="Show image" id="rNx-wu-prh"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -269,7 +270,30 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ueg-WY-WFI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1583" y="238"/>
+            <point key="canvasLocation" x="1653" y="-28"/>
+        </scene>
+        <!--Image View Controller-->
+        <scene sceneID="XQK-as-azT">
+            <objects>
+                <viewController id="zcJ-K7-iRT" customClass="ImageViewController" customModule="Smashtag" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4K7-Q4-GIq"/>
+                        <viewControllerLayoutGuide type="bottom" id="lS8-o7-IEx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8aw-uf-gPB">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gEb-J2-dXq">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m06-o6-uE3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1649" y="695"/>
         </scene>
     </scenes>
 </document>

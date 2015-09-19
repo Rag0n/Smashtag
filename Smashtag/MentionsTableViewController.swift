@@ -60,6 +60,7 @@ class MentionsTableViewController: UITableViewController {
         static let textMentionCellReuseIdentifier = "Mentions"
         static let imageMentionCellReuseIdentifier = "Mention image"
         static let SearchMentionSegueIdentifier = "Search mention"
+        static let ShowImageSegueIdentifier = "Show image"
     }
     
     private func addTextMention(indexedKeywords: [Tweet.IndexedKeyword], mentionName: String) {

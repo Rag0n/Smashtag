@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1FA983881BA8089300BB201A /* MentionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA983871BA8089300BB201A /* MentionsTableViewController.swift */; };
 		1FA9838A1BA80A9800BB201A /* MentionImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA983891BA80A9800BB201A /* MentionImageTableViewCell.swift */; };
+		1FE32DD41BAD510100BC9C7E /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE32DD31BAD510100BC9C7E /* ImageViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		EC6876171A898EF4006B5FDB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6876161A898EF4006B5FDB /* AppDelegate.swift */; };
 		EC68761C1A898EF4006B5FDB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC68761A1A898EF4006B5FDB /* Main.storyboard */; };
 		EC68761E1A898EF4006B5FDB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC68761D1A898EF4006B5FDB /* Images.xcassets */; };
@@ -35,6 +36,7 @@
 /* Begin PBXFileReference section */
 		1FA983871BA8089300BB201A /* MentionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentionsTableViewController.swift; sourceTree = "<group>"; };
 		1FA983891BA80A9800BB201A /* MentionImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentionImageTableViewCell.swift; sourceTree = "<group>"; };
+		1FE32DD31BAD510100BC9C7E /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		EC6876111A898EF4006B5FDB /* Smashtag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Smashtag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC6876151A898EF4006B5FDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC6876161A898EF4006B5FDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				EC6876411A8994BB006B5FDB /* TweetTableViewCell.swift */,
 				1FA983871BA8089300BB201A /* MentionsTableViewController.swift */,
 				1FA983891BA80A9800BB201A /* MentionImageTableViewCell.swift */,
+				1FE32DD31BAD510100BC9C7E /* ImageViewController.swift */,
 				EC6876381A898FC6006B5FDB /* Twitter */,
 				EC6876141A898EF4006B5FDB /* Supporting Files */,
 			);
@@ -245,6 +248,7 @@
 			files = (
 				1FA983881BA8089300BB201A /* MentionsTableViewController.swift in Sources */,
 				1FA9838A1BA80A9800BB201A /* MentionImageTableViewCell.swift in Sources */,
+				1FE32DD41BAD510100BC9C7E /* ImageViewController.swift in Sources */,
 				EC6876171A898EF4006B5FDB /* AppDelegate.swift in Sources */,
 				EC68763F1A898FC6006B5FDB /* TwitterRequest.swift in Sources */,
 				EC6876401A898FC6006B5FDB /* User.swift in Sources */,
