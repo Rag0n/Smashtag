@@ -197,6 +197,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="bVl-s9-Vip" kind="show" identifier="show tweet from history" id="T2a-RB-obS"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -366,4 +369,7 @@
             <point key="canvasLocation" x="229" y="985"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="T2a-RB-obS"/>
+    </inferredMetricsTieBreakers>
 </document>
