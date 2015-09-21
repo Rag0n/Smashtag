@@ -20,23 +20,15 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
             searchTextField?.text = searchText
             tweets.removeAll()
             tableView.reloadData() // clear out the table view
-            refresh()
-            if let search = searchText{
-                searchHistory.insert(search, atIndex: 0)
+            if searchText != nil {
+                history.addSearch(searchText!)
             }
+            refresh()
         }
     }
     
     // MARK: - Private API
-    private var searchHistory = [String]()
-    
-    func saveSearchHistory() {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        if let historyArray = defaults.objectForKey("searchHistory") as? [String] {
-            self.searchHistory += historyArray
-        }
-        defaults.setObject(self.searchHistory, forKey: "searchHistory")
-    }
+    private var history = HistorySearch()
     
     // MARK: - View Controller Lifecycle
 
@@ -49,10 +41,6 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
         // self.clearsSelectionOnViewWillAppear = false
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        saveSearchHistory()
     }
     
     // MARK: - Refreshing

@@ -10,16 +10,7 @@ import UIKit
 
 class HistoryTableViewController: UITableViewController {
     
-    private var searchHistory = [String]()
-    
-    private func loadHistory() {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        if let historyArray = defaults.objectForKey("searchHistory") as? [String] {
-            for searchText in historyArray {
-                searchHistory.append(searchText)
-            }
-        }
-    }
+    private var history = HistorySearch()
     
     // MARK: - View Controller Lifecycle
 
@@ -27,20 +18,16 @@ class HistoryTableViewController: UITableViewController {
         super.viewDidLoad()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        loadHistory()
-    }
-
     // MARK: - Table view data source
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchHistory.count
+        return history.searchHistory.count
     }
 
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-        let searchText = searchHistory[indexPath.row]
+        let searchText = history.searchHistory[indexPath.row]
         cell.textLabel?.text = searchText
         return cell
     }
