@@ -18,6 +18,10 @@ class HistoryTableViewController: UITableViewController {
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        tableView.reloadData()
+    }
+    
     // MARK: - Table view data source
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -26,7 +30,7 @@ class HistoryTableViewController: UITableViewController {
 
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("historySearch", forIndexPath: indexPath)
         let searchText = history.searchHistory[indexPath.row]
         cell.textLabel?.text = searchText
         return cell
