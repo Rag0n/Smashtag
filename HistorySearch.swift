@@ -27,6 +27,10 @@ class HistorySearch {
     
     func addSearch(search: String) {
         var historyArray = searchHistory
+        
+        if let index = historyArray.indexOf(search) {
+            historyArray.removeAtIndex(index)
+        }
         if historyArray.count == 100 {
             historyArray.removeLast()
         }
